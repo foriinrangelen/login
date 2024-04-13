@@ -49,14 +49,25 @@
 
     // Axios를 사용하여 POST 요청 보내기
     try {
-      const response = await axios.post('https://d1-tutorial.kyyyy8629.workers.dev/login', {
-        username: username,
-        password: password
-      });
-      
-      console.log(response.data); // 결과 데이터 출력
+  // 응답 데이터를 받아옴
+  const responseData = response.data;
+
+  // 데이터를 화면에 표시할 HTML 요소 생성 또는 업데이트
+  const resultContainer = document.createElement('div');
+  resultContainer.textContent = responseData.message; // 예를 들어, 응답 데이터에 'message'라는 필드가 있다고 가정
+  
+  // 결과를 화면에 추가
+  document.body.appendChild(resultContainer);
     } catch (error) {
-      console.error('Error:', error); // 에러 발생 시 콘솔에 에러 출력
+     // 응답 데이터를 받아옴
+  const responseData = response.data;
+
+// 데이터를 화면에 표시할 HTML 요소 생성 또는 업데이트
+const resultContainer = document.createElement('div');
+resultContainer.textContent = responseData.message; // 예를 들어, 응답 데이터에 'message'라는 필드가 있다고 가정
+
+// 결과를 화면에 추가
+document.body.appendChild(resultContainer);
     }
   }
 </script>
