@@ -2,40 +2,51 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹을 위한 뷰포트 설정 -->
   <title>로그인 예제</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    form {
-      width: 300px;
-    }
-    /* 응답 메시지를 위한 스타일 */
-    #responseMessage {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-    }
+  .login-form {
+  border: 2px solid #ccc; /* 테두리 스타일 및 두께 */
+  padding: 5%; /* 내부 여백 */
+  width: 50%; /* 폼의 너비 */
+  
+  
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 브라우저 높이의 100%만큼 */
+}
+.login-form label,
+.login-form input {
+  width: 100%;
+  box-sizing: border-box; /* 요소의 너비에 padding과 border를 포함시킵니다. */
+  display: inline-block; /* 요소들이 한 줄에 나타날 수 있도록 합니다. */
+  margin-bottom: 10px; /* 요소들 간의 간격을 조정합니다. */
+}
+#responseMessage {
+  color: red;
+  margin-top: 10px;
+}
+
   </style>
 </head>
 <body>
 
-<form id="loginForm" onsubmit="login(event)">
-  <label for="username">사용자 이름:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="password">비밀번호:</label><br>
-  <input type="password" id="password" name="password"><br><br>
-  <input type="submit" value="로그인">
-</form>
+  <div class="container">
+    <form id="loginForm" onsubmit="login(event)" class="login-form">
+      <label for="username">아이디</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">비밀번호</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <input type="submit" value="로그인">
+      <!-- 응답 메시지를 표시할 요소 추가 -->
+<div id="responseMessage">결과: </div>
+    </form>
+  </div>
 
-<!-- 응답 메시지를 표시할 요소 추가 -->
-<div id="responseMessage"></div>
 
 <script>
   async function login(event) {
@@ -56,10 +67,10 @@
       });
 
       // 응답 데이터를 화면에 표시
-      document.getElementById('responseMessage').innerText = `${response}`;
+      document.getElementById('responseMessage').innerText = `결과: ${response.data}`;
     } catch (error) {
-      // console.error('Error:', error);
-      document.getElementById('responseMessage').innerText = `${response}`;
+      // 오류 처리
+      document.getElementById('responseMessage').innerText = `결과: ${error.response.data}`;
     }
   }
 </script>
