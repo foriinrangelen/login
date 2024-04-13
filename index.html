@@ -56,10 +56,10 @@
       });
 
       // 응답 데이터를 화면에 표시
-      document.getElementById('responseMessage').innerText = `${response.data.message}`;
+      document.getElementById('responseMessage').innerText = `${response.data}`;
     } catch (error) {
       console.error('Error:', error);
-      document.getElementById('responseMessage').innerText = `${response.data.message}`;
+      document.getElementById('responseMessage').innerText = `${response.data}`;
     }
   }
 </script>
